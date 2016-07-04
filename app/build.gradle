@@ -1,15 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.coco2dx.org"
-        minSdkVersion 14
-        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        applicationId "com.oneguy.live"
+
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
 
         multiDexEnabled = true
     }
@@ -21,7 +23,6 @@ android {
         manifest.srcFile "AndroidManifest.xml"
         assets.srcDir "assets"
     }
-
 
     signingConfigs {
         debug {
@@ -41,32 +42,39 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            versionNameSuffix "-debug"
-//            minifyEnabled false
-//            zipAlignEnabled false
-//            shrinkResources false
+            signingConfig signingConfigs.debug
         }
+
         release {
-            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled true
+            shrinkResources true
+            proguardFile 'proguard-rules.pro'
             signingConfig signingConfigs.release
-//            minifyEnabled true
-//            zipAlignEnabled true
-//            shrinkResources true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':libcocos2dx')
-    compile 'com.android.support:design:23.0.1'
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile supportDependencies.design
+    compile supportDependencies.appCompat
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile files('libs/ExKsoap2-1.0.1.6.jar')
-    compile files('libs/joda-time-2.9.1.jar')
-    compile files('libs/ksoap2-android-assembly-3.6.1-jar-with-dependencies.jar')
+    compile 'com.alibaba:fastjson:+'
+    compile 'com.squareup.picasso:picasso:+'
+    compile 'com.makeramen:roundedimageview:2.1.0'
 }
 
 task cleanAssets(type: Delete) {

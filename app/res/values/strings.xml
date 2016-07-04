@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HelloWorldDemo</string>
+    <string name="common_empty_content">因各种原因没有找到你要的内容 _(:3 」∠)_</string>
+    <!-- LiveHallActivity -->
+    <string name="activity_live_hall_title">直播大厅</string>
+
 </resources>
