@@ -15,4 +15,30 @@
     <string name="mediacontroller_play_pause">Play/Pause</string>
 
     <string name="player_option">播 放 选 项</string>
+
+
+    <string name="chose_identity">请选择您的身份</string>
+    <string name="master">主播</string>
+    <string name="audience">观众</string>
+    <string name="live_url_hint">请输入直播流地址</string>
+    <string name="enter_live">进入直播</string>
+    <string name="mode_choose">美图模式选择</string>
+    <string name="filter">滤镜</string>
+    <string name="normal">普通</string>
+    <string name="start_live">开始直播</string>
+    <string name="whitening">美白</string>
+    <string name="night_view">夜景</string>
+    <string name="blur">模糊</string>
+    <string name="black_white">黑白</string>
+    <string name="sunset">黄昏</string>
+    <string name="filter_mode">滤镜模式</string>
+    <string name="play">播放</string>
+    <string name="tip">提示</string>
+    <string name="ok">确定</string>
+    <string name="living_finished">主播已停止直播，直播结束</string>
+    <string name="not_support_version">当前系统版本不支持滤镜模式，请选择普通模式</string>
+    <string name="live_starting">直播已开始</string>
+    <string name="net_broken">网络连接已断开</string>
+    <string name="live_finished">直播已结束</string>
+    <string name="is_not_filter_mode">当前模式不支持滤镜</string>
 </resources>

@@ -139,6 +139,11 @@ public class LiveHallActivity extends BaseActivity {
         goPlayActivity(currentRoom.getUrl());
     }
 
+    @OnClick(R.id.start_live)
+    public void onStartLiveClick(View v){
+        LiveActivity.startActivity(this, "rtmp://p588109a8.live.126.net/live/7173e16bfadf4fc5bd01aee9e18b8ed6?wsSecret=55972d0d202154b627af17fdb2f3ca37&wsTime=1469337105", true);
+    }
+
     private class ExtRoomCallback extends RoomCallback {
 
         @Override

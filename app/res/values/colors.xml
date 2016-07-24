@@ -125,4 +125,17 @@
 
     <color name="programme_item_text">#FF3F7276</color>
 
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_black_333333_90_transparent">#e5333333</color>
+    <color name="color_yellow_c5a962">#c5a962</color>
+    <color name="color_black_20">#33FFFFFF</color>
+    <color name="color_black_30">#4CFFFFFF</color>
+    <color name="color_black_2e2625">#2e2625</color>
+    <color name="color_black_CCffffff">#CCffffff</color>
+    <color name="color_black_cc000000">#cc000000</color>
+    <color name="color_black_10_fffff">#19ffffff</color>
 </resources>

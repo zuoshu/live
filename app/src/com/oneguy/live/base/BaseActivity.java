@@ -3,6 +3,7 @@ package com.oneguy.live.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,4 +102,5 @@ public class BaseActivity extends Activity {
     protected Context getContext(){
         return this;
     }
+
 }
