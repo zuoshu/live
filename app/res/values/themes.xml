@@ -4,8 +4,8 @@
 
     <style name="Theme.App.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background_lv1</item>
-        <item name="colorPrimary">@color/iqing_yellow</item>
-        <item name="colorPrimaryDark">@color/gold</item>
+        <item name="colorPrimary">@color/theme</item>
+        <item name="colorPrimaryDark">@color/theme</item>
         <item name="windowNoTitle">true</item>
 
     </style>

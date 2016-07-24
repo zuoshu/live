@@ -1,4 +1,4 @@
-package com.oneguy.live.control;
+package com.oneguy.live.control.util;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.oneguy.live.App;

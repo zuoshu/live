@@ -29,7 +29,7 @@ package org.cocos2dx.cpp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.oneguy.live.view.LiveHallActivity;
+import com.oneguy.live.view.activity.LiveHallActivity;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;

@@ -2,7 +2,7 @@
 
 <resources>
 
-    <color name="theme">#FFFF80AB</color>
+    <color name="theme">#006FAE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dark_white">#B2FFFFFF</color>
@@ -92,7 +92,7 @@
     <color name="content_night">#FF888882</color>
     <color name="content_night_info">#FF888882</color>
 
-    <color name="cover_border_color">#E1E1E1</color>
+    <color name="cover_border_color">#CC000000</color>
     <color name="avatar_border_color">#E1E1E1</color>
 
     <color name="charge_dialog_bg">#FF888882</color>
@@ -122,5 +122,7 @@
 
     <color name="text_dark">#C2C2C2</color>
     <color name="danmaku_input_solid">#FF666666</color>
+
+    <color name="programme_item_text">#FF3F7276</color>
 
 </resources>
