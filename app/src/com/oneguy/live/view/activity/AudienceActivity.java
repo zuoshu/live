@@ -31,10 +31,10 @@ public class AudienceActivity extends TActivity implements VideoPlayer.VideoPlay
     private final static String EXTRA_URL = "EXTRA_URL";
     @Bind(R.id.video_view)
     NEVideoView videoView;
-    @Bind(R.id.draw_view)
-    DrawSurfaceView drawView;
-    @Bind(R.id.start_stop_btn)
-    ImageView startStopBtn;
+//    @Bind(R.id.draw_view)
+//    DrawSurfaceView drawView;
+//    @Bind(R.id.start_stop_btn)
+//    ImageView startStopBtn;
     @Bind(R.id.close_btn)
     ImageView closeBtn;
 
@@ -61,13 +61,13 @@ public class AudienceActivity extends TActivity implements VideoPlayer.VideoPlay
     }
 
     private void initAudienceParam() {
-        drawView.setVisibility(View.VISIBLE);
+//        drawView.setVisibility(View.VISIBLE);
         videoPlayer = new VideoPlayer(AudienceActivity.this, videoView, null, url,
                 bufferStrategy, this, VideoConstant.VIDEO_SCALING_MODE_FIT);
 
         videoPlayer.openVideo();
-        startStopBtn.setEnabled(false);
-        startStopBtn.setImageResource(R.drawable.ic_pause);
+//        startStopBtn.setEnabled(false);
+//        startStopBtn.setImageResource(R.drawable.ic_pause);
     }
 
     @Override
@@ -130,35 +130,28 @@ public class AudienceActivity extends TActivity implements VideoPlayer.VideoPlay
 
     @Override
     public void onPrepared() {
-        if (drawView.getParent() != null) {
-            ((ViewGroup) drawView.getParent()).removeView(drawView);
-        }
-        startStopBtn.setEnabled(true);
+//        if (drawView.getParent() != null) {
+//            ((ViewGroup) drawView.getParent()).removeView(drawView);
+//        }
+//        startStopBtn.setEnabled(true);
     }
 
-    @OnClick({R.id.start_stop_btn, R.id.close_btn})
+    @OnClick({R.id.close_btn})
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.start_stop_btn:
-                startStopVideo();
-                break;
-            case R.id.close_btn:
-                finish();
-                break;
-        }
+        finish();
     }
 
-    private void startStopVideo() {
-        if (videoPlayer == null) {
-            return;
-        }
-        if (videoPlayer.isPlaying()) {
-            videoPlayer.pauseVideo();
-            startStopBtn.setImageResource(R.drawable.ic_play);
-        } else {
-            videoPlayer.startVideo();
-            startStopBtn.setImageResource(R.drawable.ic_pause);
-        }
-    }
+//    private void startStopVideo() {
+//        if (videoPlayer == null) {
+//            return;
+//        }
+//        if (videoPlayer.isPlaying()) {
+//            videoPlayer.pauseVideo();
+//            startStopBtn.setImageResource(R.drawable.ic_play);
+//        } else {
+//            videoPlayer.startVideo();
+//            startStopBtn.setImageResource(R.drawable.ic_pause);
+//        }
+//    }
 
 }

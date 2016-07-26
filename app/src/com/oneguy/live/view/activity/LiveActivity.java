@@ -38,7 +38,7 @@ import butterknife.OnClick;
 /**
  * Created by ZuoShu on 16/7/24.
  */
-public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy{
+public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy {
     private static final String TAG = LiveActivity.class.getSimpleName();
     @Bind(R.id.live_view)
     LiveSurfaceView liveView;
@@ -64,26 +64,26 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy{
     ImageView closeBtn;
 
     // mode layout
-    @Bind(R.id.filter_image)
-    ImageView filterImage;
-    @Bind(R.id.filter_text)
-    TextView filterText;
-    @Bind(R.id.filter_layout)
-    RelativeLayout filterLayout;
-    @Bind(R.id.normal_image)
-    ImageView normalImage;
-    @Bind(R.id.normal_image_mode)
-    ImageView normalImageMode;
-    @Bind(R.id.normal_text)
-    TextView normalText;
-    @Bind(R.id.normal_layout)
-    RelativeLayout normalLayout;
-    @Bind(R.id.mode_choose_layout)
-    RelativeLayout modeChooseLayout;
-    @Bind(R.id.start_live_btn)
-    Button startLiveBtn;
-    @Bind(R.id.cover_layout)
-    RelativeLayout coverLayout;
+//    @Bind(R.id.filter_image)
+//    ImageView filterImage;
+//    @Bind(R.id.filter_text)
+//    TextView filterText;
+//    @Bind(R.id.filter_layout)
+//    RelativeLayout filterLayout;
+//    @Bind(R.id.normal_image)
+//    ImageView normalImage;
+//    @Bind(R.id.normal_image_mode)
+//    ImageView normalImageMode;
+//    @Bind(R.id.normal_text)
+//    TextView normalText;
+//    @Bind(R.id.normal_layout)
+//    RelativeLayout normalLayout;
+//    @Bind(R.id.mode_choose_layout)
+//    RelativeLayout modeChooseLayout;
+//    @Bind(R.id.start_live_btn)
+//    Button startLiveBtn;
+//    @Bind(R.id.cover_layout)
+//    RelativeLayout coverLayout;
     @Bind(R.id.draw_view)
     DrawSurfaceView drawSurfaceView;
     @Bind(R.id.filter_normal_mode)
@@ -125,6 +125,13 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy{
         parseIntent();
         updateBtnState(false);
         requestLivePermission(); // 请求权限
+
+        getHandler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startLive();
+            }
+        }, 100);
     }
 
     /***********************
@@ -256,45 +263,45 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy{
         return true;
     }
 
-    private void setMode(boolean isFilterMode) {
-        this.isFilterMode = isFilterMode;
-        if (isFilterMode) {
-            filterImage.setImageResource(R.drawable.ic_filter_pressed);
-            filterText.setTextColor(getResources().getColor(R.color.color_black_2e2625));
-            normalImageMode.setImageResource(R.drawable.ic_normal_mode);
-            normalText.setTextColor(getResources().getColor(R.color.color_black_CCffffff));
-            filterLayout.setBackgroundResource(R.drawable.ic_solid_round);
-            normalLayout.setBackgroundResource(R.drawable.ic_round_hole);
-        } else {
-            filterImage.setImageResource(R.drawable.ic_filter_normal);
-            filterText.setTextColor(getResources().getColor(R.color.color_black_CCffffff));
-            normalImageMode.setImageResource(R.drawable.ic_normal_mode_pressed);
-            normalText.setTextColor(getResources().getColor(R.color.color_black_2e2625));
-            filterLayout.setBackgroundResource(R.drawable.ic_round_hole);
-            normalLayout.setBackgroundResource(R.drawable.ic_solid_round);
-        }
-    }
+//    private void setMode(boolean isFilterMode) {
+//        this.isFilterMode = isFilterMode;
+//        if (isFilterMode) {
+//            filterImage.setImageResource(R.drawable.ic_filter_pressed);
+//            filterText.setTextColor(getResources().getColor(R.color.color_black_2e2625));
+//            normalImageMode.setImageResource(R.drawable.ic_normal_mode);
+//            normalText.setTextColor(getResources().getColor(R.color.color_black_CCffffff));
+//            filterLayout.setBackgroundResource(R.drawable.ic_solid_round);
+//            normalLayout.setBackgroundResource(R.drawable.ic_round_hole);
+//        } else {
+//            filterImage.setImageResource(R.drawable.ic_filter_normal);
+//            filterText.setTextColor(getResources().getColor(R.color.color_black_CCffffff));
+//            normalImageMode.setImageResource(R.drawable.ic_normal_mode_pressed);
+//            normalText.setTextColor(getResources().getColor(R.color.color_black_2e2625));
+//            filterLayout.setBackgroundResource(R.drawable.ic_round_hole);
+//            normalLayout.setBackgroundResource(R.drawable.ic_solid_round);
+//        }
+//    }
 
     // 隐藏选择模式布局，开始推流
-    private void hideAndStartPlay() {
-        if (isFilterMode && !checkVersion()) {
-            Toast.makeText(LiveActivity.this, R.string.not_support_version, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        coverLayout.setVisibility(View.GONE);
-        // 普通模式，不显示滤镜按钮
-        if (!isFilterMode) {
-            filterModeImage.setVisibility(View.GONE);
-        }
-        drawSurfaceView.setVisibility(View.VISIBLE);
-        playStopImage.setImageResource(R.drawable.ic_pause);
-        getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startLive();
-            }
-        }, 100);
-    }
+//    private void hideAndStartPlay() {
+//        if (isFilterMode && !checkVersion()) {
+//            Toast.makeText(LiveActivity.this, R.string.not_support_version, Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        coverLayout.setVisibility(View.GONE);
+//        // 普通模式，不显示滤镜按钮
+//        if (!isFilterMode) {
+//            filterModeImage.setVisibility(View.GONE);
+//        }
+//        drawSurfaceView.setVisibility(View.VISIBLE);
+//        playStopImage.setImageResource(R.drawable.ic_pause);
+//        getHandler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startLive();
+//            }
+//        }, 100);
+//    }
 
     private void startLive() {
         initLivePlayer();
@@ -342,7 +349,6 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy{
 
     @OnClick({R.id.switch_image, R.id.play_stop_image, R.id.filter_mode_image,
             R.id.filter_mode_layout, R.id.close_btn,
-            R.id.filter_layout, R.id.normal_layout, R.id.start_live_btn,
             R.id.filter_normal_mode, R.id.filter_white_mode, R.id.filter_night_mode, R.id.filter_blur_mode, R.id.filter_dark_mode, R.id.filter_sunset_mode})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -378,20 +384,21 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy{
                 }
                 break;
             case R.id.close_btn:
-                if (coverLayout.getVisibility() == View.VISIBLE) {
-                    finish();
-                } else {
-                    resetLivePlayer();
-                }
-            case R.id.filter_layout:
-                setMode(true);
+//                if (coverLayout.getVisibility() == View.VISIBLE) {
+//                    finish();
+//                } else {
+//                }
+                resetLivePlayer();
                 break;
-            case R.id.normal_layout:
-                setMode(false);
-                break;
-            case R.id.start_live_btn:
-                hideAndStartPlay();
-                break;
+//            case R.id.filter_layout:
+//                setMode(true);
+//                break;
+//            case R.id.normal_layout:
+//                setMode(false);
+//                break;
+//            case R.id.start_live_btn:
+//                hideAndStartPlay();
+//                break;
             case R.id.filter_normal_mode:
                 clearColors();
                 filterNormalMode.setBackgroundColor(Color.GRAY);

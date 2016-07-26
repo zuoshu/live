@@ -84,8 +84,7 @@
                 android:layout_toRightOf="@+id/thumbnail_layout"
                 android:layout_weight="7"
                 android:divider="@color/transparent"
-                android:dividerHeight="5dp"
-                android:listSelector="@null"></ListView>
+                android:dividerHeight="5dp"></ListView>
         </LinearLayout>
     </FrameLayout>
 </RelativeLayout>
