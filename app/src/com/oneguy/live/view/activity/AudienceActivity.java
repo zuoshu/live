@@ -63,7 +63,7 @@ public class AudienceActivity extends TActivity implements VideoPlayer.VideoPlay
     private void initAudienceParam() {
         drawView.setVisibility(View.VISIBLE);
         videoPlayer = new VideoPlayer(AudienceActivity.this, videoView, null, url,
-                bufferStrategy, this, VideoConstant.VIDEO_SCALING_MODE_FILL_BLACK);
+                bufferStrategy, this, VideoConstant.VIDEO_SCALING_MODE_FIT);
 
         videoPlayer.openVideo();
         startStopBtn.setEnabled(false);
