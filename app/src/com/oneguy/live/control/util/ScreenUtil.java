@@ -5,7 +5,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import com.oneguy.live.App;
+import com.oneguy.live.DemoCache;
 
 import java.lang.reflect.Field;
 
@@ -64,7 +64,7 @@ public class ScreenUtil {
 
 	public static int getDisplayHeight() {
 		if(screenHeight == 0){
-			GetInfo(App.getInstance());
+			GetInfo(DemoCache.getContext());
 		}
 		return screenHeight;
 	}

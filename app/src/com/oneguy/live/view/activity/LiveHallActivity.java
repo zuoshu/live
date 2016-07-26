@@ -1,5 +1,9 @@
 package com.oneguy.live.view.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -58,6 +62,8 @@ public class LiveHallActivity extends BaseActivity {
     int thumbnailWidth;
     int thumbnailHeight;
 
+    String[] textSizeItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +80,7 @@ public class LiveHallActivity extends BaseActivity {
         roomCallback = new ExtRoomCallback();
         itemListCallback = new ExtItemListCallback();
 
+        textSizeItems = new String[]{"主播", "观众"};
         calculateSize();
         loadData();
 //        goPlayActivity("rtmp://live.hkstv.hk.lxdns.com/live/hks");
@@ -127,21 +134,38 @@ public class LiveHallActivity extends BaseActivity {
 
     private void goPlayActivity(String url) {
         url = "rtmp://v588109a8.live.126.net/live/7173e16bfadf4fc5bd01aee9e18b8ed6";
-        Intent intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra("media_type", "livestream");
-        intent.putExtra("decode_type", "software");
-        intent.putExtra("videoPath", url);
-        startActivity(intent);
+        AudienceActivity.startActivity(this,url);
     }
 
     @OnClick(R.id.thumbnail_layout)
     public void onThumbnailClick(View v) {
-        goPlayActivity(currentRoom.getUrl());
+        getActionSelect().show(getFragmentManager(), String.valueOf(Math.random()));
     }
 
-    @OnClick(R.id.start_live)
-    public void onStartLiveClick(View v){
-        LiveActivity.startActivity(this, "rtmp://p588109a8.live.126.net/live/7173e16bfadf4fc5bd01aee9e18b8ed6?wsSecret=55972d0d202154b627af17fdb2f3ca37&wsTime=1469337105", true);
+    private DialogFragment getActionSelect() {
+        return new DialogFragment() {
+
+            @Override
+            public Dialog onCreateDialog(Bundle savedInstanceState) {
+                return new AlertDialog.Builder(getActivity())
+                        .setSingleChoiceItems(textSizeItems, 0, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case 0:
+                                        String url = "rtmp://p588109a8.live.126.net/live/7173e16bfadf4fc5bd01aee9e18b8ed6?wsSecret=b3dc887201535d5300b9b968740bd7ac&wsTime=1469521013";
+                                        LiveActivity.startActivity(LiveHallActivity.this
+                                                , url, true);
+                                        break;
+                                    case 1:
+                                        goPlayActivity(currentRoom.getUrl());
+                                        break;
+                                }
+                                dismiss();
+                            }
+                        }).create();
+            }
+        };
     }
 
     private class ExtRoomCallback extends RoomCallback {

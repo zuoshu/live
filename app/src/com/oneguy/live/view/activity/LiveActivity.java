@@ -24,7 +24,7 @@ import com.oneguy.live.control.permission.MPermission;
 import com.oneguy.live.control.permission.annotation.OnMPermissionDenied;
 import com.oneguy.live.control.permission.annotation.OnMPermissionGranted;
 import com.oneguy.live.control.permission.annotation.OnMPermissionNeverAskAgain;
-import com.oneguy.live.control.util.MPermissionUtil;
+import com.oneguy.live.control.permission.util.MPermissionUtil;
 import com.oneguy.live.module.live.LivePlayer;
 import com.oneguy.live.module.live.LiveSurfaceView;
 import com.oneguy.live.view.widget.DrawSurfaceView;

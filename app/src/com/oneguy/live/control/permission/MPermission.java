@@ -10,14 +10,15 @@ import android.support.v4.app.Fragment;
 import com.oneguy.live.control.permission.annotation.OnMPermissionDenied;
 import com.oneguy.live.control.permission.annotation.OnMPermissionGranted;
 import com.oneguy.live.control.permission.annotation.OnMPermissionNeverAskAgain;
-import com.oneguy.live.control.util.MPermissionUtil;
+import com.oneguy.live.control.permission.util.MPermissionUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.oneguy.live.control.util.MPermissionUtil.getActivity;
+import static com.oneguy.live.control.permission.util.MPermissionUtil.getActivity;
+
 
 public class MPermission {
     private String[] permissions;

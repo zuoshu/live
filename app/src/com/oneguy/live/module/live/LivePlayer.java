@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.netease.LSMediaCapture.lsMediaCapture;
 import com.netease.LSMediaCapture.lsMessageHandler;
 import com.netease.livestreamingFilter.view.CameraSurfaceView;
-import com.oneguy.live.control.util.LogUtil;
+import com.oneguy.live.control.util.log.LogUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

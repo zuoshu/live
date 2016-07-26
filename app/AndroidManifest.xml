@@ -29,6 +29,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:supportsRtl="true"
         android:icon="@drawable/icon">
 
         <!-- Tell Cocos2dxActivity the name of our .so -->
@@ -55,12 +56,13 @@
             android:theme="@style/Theme.App.FullScreen"></activity>
 
         <activity
-            android:name=".view.activity.PlayerActivity"
+            android:name=".view.activity.LiveActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.App.FullScreen"></activity>
+            android:theme="@style/Theme.App.FullScreen"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
-            android:name=".view.activity.LiveActivity"
+            android:name=".view.activity.AudienceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.App.FullScreen"
             android:windowSoftInputMode="stateHidden|adjustResize" />
