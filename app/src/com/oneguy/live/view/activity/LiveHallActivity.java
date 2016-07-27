@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.netease.LSMediaCapture.lsMediaCapture;
+import com.netease.neliveplayer.NEMediaMeta;
+import com.netease.neliveplayer.NEUtils;
 import com.oneguy.live.R;
 import com.oneguy.live.base.BaseActivity;
 import com.oneguy.live.control.util.LiveTransformation;
@@ -23,6 +26,7 @@ import com.oneguy.live.control.util.ViewUtil;
 import com.oneguy.live.control.wsdl.OperationResult;
 import com.oneguy.live.model.bean.Item;
 import com.oneguy.live.model.bean.Room;
+import com.oneguy.live.module.video.NEVideoView;
 import com.oneguy.live.view.adapter.ProgrammeItemAdapter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -83,7 +87,7 @@ public class LiveHallActivity extends BaseActivity {
         textSizeItems = new String[]{"主播", "观众"};
         calculateSize();
         loadData();
-//        goPlayActivity("rtmp://live.hkstv.hk.lxdns.com/live/hks");
+
     }
 
     private void calculateSize() {
@@ -154,8 +158,9 @@ public class LiveHallActivity extends BaseActivity {
                                 switch (which) {
                                     case 0:
                                         String url = "rtmp://p588109a8.live.126.net/live/7173e16bfadf4fc5bd01aee9e18b8ed6?wsSecret=b3dc887201535d5300b9b968740bd7ac&wsTime=1469521013";
+                                        // filtermode not run on MX5
                                         LiveActivity.startActivity(LiveHallActivity.this
-                                                , url, true);
+                                                , url, false);
                                         break;
                                     case 1:
                                         goPlayActivity(currentRoom.getUrl());

@@ -235,7 +235,7 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy 
 
     private void parseIntent() {
         url = getIntent().getStringExtra(EXTRA_URL);
-        isFilterMode = getIntent().getBooleanExtra(EXTRA_MODE, true);
+        isFilterMode = getIntent().getBooleanExtra(EXTRA_MODE, false);
     }
 
     private void updateBtnState(boolean register) {
@@ -245,6 +245,7 @@ public class LiveActivity extends TActivity implements LivePlayer.ActivityProxy 
     }
 
     private void initLivePlayer() {
+//        isFilterMode = false;
         if (!isFilterMode) {
             livePlayer = new LivePlayer(liveView, url, this);
             liveView.setVisibility(View.VISIBLE);

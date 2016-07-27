@@ -32,9 +32,13 @@ public class LivePlayer implements lsMessageHandler {
 
     public interface ActivityProxy {
         Activity getActivity();
+
         void onLiveStart();
+
         void onInitFailed();
+
         void onNetWorkBroken();
+
         void onFinished();
     }
 
@@ -56,15 +60,15 @@ public class LivePlayer implements lsMessageHandler {
     private int mVideoEncodeWidth, mVideoEncodeHeight; // 推流分辨率
     private String mLogPath = null; //直播日志路径
     private int mLogLevel = LS_LOG_ERROR;
-    public static final int LS_LOG_QUIET       = 0x00;            //!< log输出模式：不输出
-    public static final int LS_LOG_ERROR       = 1 << 0;          //!< log输出模式：输出错误
-    public static final int LS_LOG_WARNING     = 1 << 1;          //!< log输出模式：输出警告
-    public static final int LS_LOG_INFO        = 1 << 2;          //!< log输出模式：输出信息
-    public static final int LS_LOG_DEBUG       = 1 << 3;          //!< log输出模式：输出调试信息
-    public static final int LS_LOG_DETAIL      = 1 << 4;          //!< log输出模式：输出详细
-    public static final int LS_LOG_RESV        = 1 << 5;          //!< log输出模式：保留
+    public static final int LS_LOG_QUIET = 0x00;            //!< log输出模式：不输出
+    public static final int LS_LOG_ERROR = 1 << 0;          //!< log输出模式：输出错误
+    public static final int LS_LOG_WARNING = 1 << 1;          //!< log输出模式：输出警告
+    public static final int LS_LOG_INFO = 1 << 2;          //!< log输出模式：输出信息
+    public static final int LS_LOG_DEBUG = 1 << 3;          //!< log输出模式：输出调试信息
+    public static final int LS_LOG_DETAIL = 1 << 4;          //!< log输出模式：输出详细
+    public static final int LS_LOG_RESV = 1 << 5;          //!< log输出模式：保留
     public static final int LS_LOG_LEVEL_COUNT = 6;
-    public static final int LS_LOG_DEFAULT     = LS_LOG_WARNING;	//!< log输出模式：默认输出警告
+    public static final int LS_LOG_DEFAULT = LS_LOG_WARNING;    //!< log输出模式：默认输出警告
 
     // 音视频
     public static final int HAVE_AUDIO = 0;
@@ -128,6 +132,7 @@ public class LivePlayer implements lsMessageHandler {
      * ******************************** Activity 生命周期直播状态控制 ********************************
      */
     boolean isActivityPause = false;
+
     public void onActivityResume() {
         isActivityPause = false;
         if (mLSMediaCapture != null) {
@@ -226,7 +231,7 @@ public class LivePlayer implements lsMessageHandler {
         }
 
         //滤镜模式下不开视频水印
-        if(!mLSLiveStreamingParaCtx.eHaraWareEncType.hardWareEncEnable && mWaterMarkOn) {
+        if (!mLSLiveStreamingParaCtx.eHaraWareEncType.hardWareEncEnable && mWaterMarkOn) {
             waterMark();
         }
 
@@ -239,11 +244,11 @@ public class LivePlayer implements lsMessageHandler {
 //            mLSLiveStreamingParaCtx.sLSVideoParaCtx.height = 600;
 //        }
 //        else if(mVideoResolution.equals("SD")) {
-            mLSLiveStreamingParaCtx.sLSVideoParaCtx.fps = 20;
-            mLSLiveStreamingParaCtx.sLSVideoParaCtx.bitrate = 600000;
-            mLSLiveStreamingParaCtx.sLSVideoParaCtx.codec.videoCODECType = LS_VIDEO_CODEC_AVC;
-            mLSLiveStreamingParaCtx.sLSVideoParaCtx.width = 640;
-            mLSLiveStreamingParaCtx.sLSVideoParaCtx.height = 360;
+        mLSLiveStreamingParaCtx.sLSVideoParaCtx.fps = 20;
+        mLSLiveStreamingParaCtx.sLSVideoParaCtx.bitrate = 600000;
+        mLSLiveStreamingParaCtx.sLSVideoParaCtx.codec.videoCODECType = LS_VIDEO_CODEC_AVC;
+        mLSLiveStreamingParaCtx.sLSVideoParaCtx.width = 640;
+        mLSLiveStreamingParaCtx.sLSVideoParaCtx.height = 360;
 //        }
 //        else {
 //        mLSLiveStreamingParaCtx.sLSVideoParaCtx.fps = 15;
@@ -257,6 +262,7 @@ public class LivePlayer implements lsMessageHandler {
         getLogPath();
 
         if (mLSMediaCapture != null) {
+            LogUtil.i(TAG, "sdkVersion=" + mLSMediaCapture.getSDKVersion());
             if (isFilterMode) {
                 mLSMediaCapture.startVideoPreviewOpenGL(filterSurfaceView, mLSLiveStreamingParaCtx.sLSVideoParaCtx.cameraPosition.cameraPosition);
             } else {
@@ -270,13 +276,12 @@ public class LivePlayer implements lsMessageHandler {
     }
 
     //获取日志文件路径
-    public void getLogPath()
-    {
+    public void getLogPath() {
         try {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 mLogPath = Environment.getExternalStorageDirectory() + "/log/";
             }
-            if(mLSMediaCapture != null) {
+            if (mLSMediaCapture != null) {
                 mLSMediaCapture.setTraceLevel(mLogLevel, mLogPath);
             }
         } catch (Exception e) {
@@ -288,7 +293,7 @@ public class LivePlayer implements lsMessageHandler {
     private void copyFile(InputStream in, OutputStream out) throws IOException {
         byte[] buffer = new byte[1024];
         int read;
-        while((read = in.read(buffer)) != -1){
+        while ((read = in.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }
     }
@@ -315,17 +320,14 @@ public class LivePlayer implements lsMessageHandler {
             Log.e("tag", "Failed to get asset file list.", e);
         }
 
-        if(mWaterMarkAppFileDirectory != null)
-        {
+        if (mWaterMarkAppFileDirectory != null) {
             fileDirectory = mWaterMarkAppFileDirectory;
-        }
-        else
-        {
+        } else {
             fileDirectory = Environment.getExternalStorageDirectory();
             mWaterMarkFilePath = fileDirectory + "/" + mWaterMarkFileName;
         }
 
-        for(String filename : files) {
+        for (String filename : files) {
             try {
                 InputStream in = assetManager.open("waterMark/" + filename);
                 File outFile = new File(fileDirectory, filename);
@@ -337,7 +339,7 @@ public class LivePlayer implements lsMessageHandler {
                 out.flush();
                 out.close();
                 out = null;
-            } catch(IOException e) {
+            } catch (IOException e) {
                 Log.e("tag", "Failed to copy asset file", e);
             }
         }
@@ -349,6 +351,7 @@ public class LivePlayer implements lsMessageHandler {
 
     /**
      * 返回是否成功开启
+     *
      * @return
      */
     public boolean startStopLive() {
@@ -376,8 +379,7 @@ public class LivePlayer implements lsMessageHandler {
     private void startAV() {
         if (mLSMediaCapture != null) {
             // 水印
-            if(!isFilterMode && mLSLiveStreamingParaCtx.eOutStreamType.outputStreamType == HAVE_AV || mLSLiveStreamingParaCtx.eOutStreamType.outputStreamType == HAVE_VIDEO)
-            {
+            if (!isFilterMode && mLSLiveStreamingParaCtx.eOutStreamType.outputStreamType == HAVE_AV || mLSLiveStreamingParaCtx.eOutStreamType.outputStreamType == HAVE_VIDEO) {
                 mWaterMarkPosX = mVideoEncodeHeight - 130;
                 mLSMediaCapture.setWaterMarkPara(mWaterMarkOn, mWaterMarkFilePath, mWaterMarkPosX, mWaterMarkPosY);
             }
@@ -396,6 +398,7 @@ public class LivePlayer implements lsMessageHandler {
 
     /**
      * 重启直播（例如：断网重连）
+     *
      * @return 是否开始重启
      */
     public boolean restartLive() {
@@ -441,7 +444,7 @@ public class LivePlayer implements lsMessageHandler {
             m_liveStreamingOn = false;
             m_liveStreamingPause = false;
             m_tryToStopLiveStreaming = false;
-        } else if (mLSMediaCapture !=null && !m_liveStreamingInitFinished) {
+        } else if (mLSMediaCapture != null && !m_liveStreamingInitFinished) {
             //反初始化推流实例
             mLSMediaCapture.uninitLsMediaCapture(true);
         }

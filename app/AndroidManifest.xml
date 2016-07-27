@@ -58,7 +58,7 @@
         <activity
             android:name=".view.activity.LiveActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.App.FullScreen"
+            android:theme="@style/Theme.App"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity
